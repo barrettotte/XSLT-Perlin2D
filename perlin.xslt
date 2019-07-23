@@ -14,6 +14,7 @@
 	extension-element-prefixes="date dyn exsl func math regexp set str xalan"
 >
   <xsl:import href="utils.xslt"/>
+  <xsl:import href="permutations.xslt"/>
   <xsl:output method="xml" indent="yes"/>
 
   <xsl:template match="/perlin-noise">
@@ -55,7 +56,6 @@
             <xsl:with-param name="upper" select="1024"/>
           </xsl:call-template>
         </xsl:with-param>
-      </xsl:call-template>
     </xsl:element>
   </xsl:template>
 
@@ -83,62 +83,26 @@
           <xsl:attribute name="y">
             <xsl:apply-templates select="@y"/>
           </xsl:attribute>
-          <xsl:call-template name="calcPixel">
+          <xsl:call-template name="calculateNoise">
             <xsl:with-param name="x" select="@x"/>
             <xsl:with-param name="y" select="@y"/>
-            <xsl:with-param name="sizeX" select="$sizeX"/>
-            <xsl:with-param name="sizeY" select="$sizeY"/>
           </xsl:call-template>
         </xsl:copy>
       </xsl:for-each>
     </xsl:element>
   </xsl:template>
 
-  <xsl:template name="calcPixel">
-    <xsl:param name="x"/>
-    <xsl:param name="y"/>
-    <xsl:param name="sizeX"/>
-    <xsl:param name="sizeY"/>
-    <xsl:call-template name="rand"/>
+  <xsl:template name="calculateNoise">
+    <xsl:param name="x" select="0"/>
+    <xsl:param name="y" select="0"/>
+    
   </xsl:template>
 
   <xsl:template name="gradient2D">
     <xsl:param name="hash"/>
     <xsl:param name="x"/>
     <xsl:param name="y"/>
-    <xsl:variable name="hashAnd1">
-      <xsl:call-template name="bitwiseAnd">
-        <xsl:with-param name="left" select="$hash"/>
-        <xsl:with-param name="right" select="1"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="hashAnd2">
-      <xsl:call-template name="bitwiseAnd">
-        <xsl:with-param name="left" select="$hash"/>
-        <xsl:with-param name="right" select="1"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="left">
-      <xsl:choose>
-        <xsl:when test="$hashAnd1 = 0">
-          <xsl:value-of select="x"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="-x"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="right">
-      <xsl:choose>
-        <xsl:when test="$hashAnd2 = 0">
-          <xsl:value-of select="y"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="-y"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:value-of select="$left + $right"/>
+    
   </xsl:template>
 
   <xsl:template name="lerp">

@@ -31,5 +31,4 @@ Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
 
 
 ## Sources
-* Basic Perlin2D algorithm https://gist.github.com/Fataho/5b422037a6fdcb21c9134ef34d2fa79a
-* Another Perlin2D implementation https://github.com/keijiro/PerlinNoise/blob/master/Assets/Perlin.cs
+* https://en.wikipedia.org/wiki/Perlin_noise

@@ -82,8 +82,8 @@
   <xsl:template name="map">
     <xsl:param name="sizeX"/>
     <xsl:param name="sizeY"/>
-    <xsl:param name="currentY" select="0"/>
-    <xsl:if test="not($currentY = $sizeY)">
+    <xsl:param name="currentY" select="1"/>
+    <xsl:if test="not($currentY = $sizeY+1)">
       <xsl:call-template name="mapRow">
         <xsl:with-param name="currentY" select="$currentY"/>
         <xsl:with-param name="sizeX" select="$sizeX"/>
@@ -97,10 +97,10 @@
   </xsl:template>
 
   <xsl:template name="mapRow">
-    <xsl:param name="currentX" select="0"/>
+    <xsl:param name="currentX" select="1"/>
     <xsl:param name="currentY"/>
     <xsl:param name="sizeX"/>
-    <xsl:if test="not($currentX = $sizeX)">
+    <xsl:if test="not($currentX = $sizeX+1)">
       <xsl:element name="pixel">
         <xsl:attribute name="x">
           <xsl:value-of select="$currentX"/>
