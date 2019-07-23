@@ -1,6 +1,10 @@
 # XSLT-Perlin2D
 
-A 2D perlin noise SVG generator using XSLT 1.1 and self loathing
+
+A 2D perlin noise SVG generator using XSLT 1.1 and self loathing.
+
+
+Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
 
 
 ## Input XML
@@ -28,3 +32,4 @@ A 2D perlin noise SVG generator using XSLT 1.1 and self loathing
 
 ## Sources
 * Basic Perlin2D algorithm https://gist.github.com/Fataho/5b422037a6fdcb21c9134ef34d2fa79a
+* Another Perlin2D implementation https://github.com/keijiro/PerlinNoise/blob/master/Assets/Perlin.cs

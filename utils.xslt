@@ -15,19 +15,42 @@
 >
   <xsl:output method="xml" indent="yes"/>
   
-  <xsl:template name="boundParam">
-    <xsl:param name="var" select="0.0"/>
+  <xsl:template name="bitwiseAnd">
+    <xsl:param name="left"/>
+    <xsl:param name="right"/>
+    <xsl:param name="bitIter" select="1"/>
+    <xsl:param name="tmp" select="0"/>
+    <xsl:variable name="leftBit" select="floor($left div 2)"/>
+    <xsl:variable name="rightBit" select="floor($right div 2)"/>
+    <xsl:variable name="value" select="$tmp + (($left mod 2 and $right mod 2) * $bitIter)"/>
+    <xsl:choose>
+      <xsl:when test="$leftBit and $rightBit">
+        <xsl:call-template name="bitwiseAnd">
+          <xsl:with-param name="left" select="$leftBit"/>
+          <xsl:with-param name="right" select="$rightBit"/>
+          <xsl:with-param name="bitIter" select="2 * $bitIter"/>
+          <xsl:with-param name="tmp" select="$value"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$value" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="boundedParam">
+    <xsl:param name="param" select="0.0"/>
     <xsl:param name="lower" select="0.0"/>
     <xsl:param name="upper" select="0.0"/>
     <xsl:choose>
-      <xsl:when test="$var &gt; $upper">
+      <xsl:when test="$param &gt; $upper">
         <xsl:value-of select="$upper"/>
       </xsl:when>
-      <xsl:when test="$var &lt; $lower">
+      <xsl:when test="$param &lt; $lower">
         <xsl:value-of select="$lower"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$var"/>
+        <xsl:value-of select="$param"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -41,7 +64,7 @@
   <xsl:template name="rand">
     <xsl:value-of select="math:random()"/>
   </xsl:template>
-  
+
   <xsl:template name="newMap">
     <xsl:param name="sizeX" select="8"/>
     <xsl:param name="sizeY" select="8"/>
