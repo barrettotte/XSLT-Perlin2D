@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="perlin.xslt" type="text/xsl"?>
 <perlin-noise>
-    <settings>
-        <title>2D Perlin Noise</title>
-        <size x="64" y="64"/>
-        <frequency>6</frequency>
-    </settings>
+  <settings>
+    <sizeX>64</sizeX>
+    <sizeY>64</sizeY>
+    <seed>1234</seed>
+    <frequency>6</frequency>
+    <octaves>4</octaves>
+  </settings>
 </perlin-noise>

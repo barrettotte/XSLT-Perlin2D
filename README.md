@@ -22,7 +22,7 @@ Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
 
 ## Run
 * This was actually a huge pain to figure out which XSLT processor to use (xalan, saxon, xsltproc, etc)
-* ```build.bat``` OR ```groovy build.groovy```
+* ```groovy build.groovy```
 
 
 
