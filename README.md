@@ -13,7 +13,7 @@ Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
 ## Building
 * This was actually a huge pain to figure out which XSLT processor to use (xalan, saxon, xsltproc, etc)
 * I ended up doing something gross. I used Apache Ant and Saxon9.
-* To build with Saxon9 use ```build-saxon.xml```, to build with XALAN use ```build-xalan.groovy```
+* To build with Saxon9 use ```build.xml```, to build with XALAN use ```build-xalan.groovy```
 
 
 ## Input XML
