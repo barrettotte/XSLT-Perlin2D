@@ -30,7 +30,7 @@ Its ugly, slow, and I'm sorry for bringing it into existence.
 ```
 
 
-## Output SVG
+## Output SVG (```perlin.svg```)
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
@@ -38,9 +38,24 @@ Its ugly, slow, and I'm sorry for bringing it into existence.
    <rect x="2" y="1" width="1" height="1" fill="rgb(61,61,61)"/>
    <rect x="3" y="1" width="1" height="1" fill="rgb(180,180,180)"/>
    <rect x="4" y="1" width="1" height="1" fill="rgb(160,160,160)"/>
-   <!-- ............................................................. -->
+   <!-- ... -->
 </svg>
 ```
+
+
+## Screenshot
+![perlin-screenshot](screenshot.PNG)
+
+
+## XSLT Descriptions
+| File Name | Description |
+| --------- | ----------- |
+| hash.xslt | Pre-computed hashes for generating perlin noise |
+| map.xslt  | Create map data structure of pixels |
+| noise.xslt | Generate 2D Perlin noise |
+| perlin-svg.xslt | Driver |
+| svg-utils.xslt | Utils for SVG generation and color value conversion |
+| utils.xslt | General utils |
 
 
 ## Sources
