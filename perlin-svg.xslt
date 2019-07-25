@@ -13,7 +13,6 @@
           <xsl:with-param name="freq" select="settings/frequency"/>
           <xsl:with-param name="octaves" select="settings/octaves"/>
           <xsl:with-param name="seed" select="settings/seed"/>
-          
         </xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="sizeX" select="settings/sizeX"/>

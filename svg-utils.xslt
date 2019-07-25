@@ -10,7 +10,6 @@
     <xsl:param name="sizeX"/>
     <xsl:param name="sizeY"/>
     <svg xmlns="http://www.w3.org/2000/svg" width="{$sizeX}" height="{$sizeY}" viewBox="0 0 {$sizeX} {$sizeY}">
-      
       <xsl:for-each select="exsl:node-set($pixels)/perlin-noise/pixel">
         <xsl:variable name="pixel" select="."/>
         <xsl:variable name="color">
