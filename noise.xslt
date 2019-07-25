@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.1"
-	xmlns:date="http://exslt.org/dates-and-times"
-	xmlns:dyn="http://exslt.org/dynamic" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
 	xmlns:exsl="http://exslt.org/common"
-	xmlns:func="http://exslt.org/functions"
 	xmlns:math="java.lang.Math"
-	xmlns:regexp="http://exslt.org/regular-expressions"
-	xmlns:set="http://exslt.org/sets"
-	xmlns:str="http://exslt.org/strings"
-	xmlns:xalan="http://xml.apache.org/xalan"
-	exclude-result-prefixes="xalan"
-	extension-element-prefixes="date dyn exsl func math regexp set str xalan"
+	extension-element-prefixes="exsl math"
 >
 	<xsl:import href="hash.xslt"/>
 	<xsl:import href="map.xslt"/>
@@ -46,9 +38,9 @@
           <xsl:call-template name="perlin2D">
             <xsl:with-param name="x" select="@x"/>
             <xsl:with-param name="y" select="@y"/>
-						<xsl:with-param name="freq" select="$freq"/>
-						<xsl:with-param name="octaves" select="$octaves"/>
-						<xsl:with-param name="seed" select="$seed"/>
+			<xsl:with-param name="freq" select="$freq"/>
+			<xsl:with-param name="octaves" select="$octaves"/>
+			<xsl:with-param name="seed" select="$seed"/>
           </xsl:call-template>
         </xsl:copy>
       </xsl:for-each>
@@ -64,42 +56,30 @@
 		<xsl:param name="dv"/>
 		<xsl:param name="octaves"/>
 		<xsl:param name="octaveIter"/>
-		<!-- Sanity Check -->
-		==========================
-		xAmp = <xsl:value-of select="$xAmp"/>
-		yAmp = <xsl:value-of select="$yAmp"/>
-		amp = <xsl:value-of select="$amp"/>
-		fin = <xsl:value-of select="$fin"/>
-		seed = <xsl:value-of select="$seed"/>
-		dv = <xsl:value-of select="$dv"/>
-		octaves = <xsl:value-of select="$octaves"/>
-		octaveIter = <xsl:value-of select="$octaveIter"/>
-		==========================
-		<xsl:if test="not($octaveIter = $octaves)">
-			<xsl:variable name="noise">
-				<xsl:call-template name="noise2D">
-						<xsl:with-param name="x" select="$xAmp"/>
-						<xsl:with-param name="y" select="$yAmp"/>
-						<xsl:with-param name="seed" select="$seed"/>
-					</xsl:call-template>
-			</xsl:variable>
-			<xsl:call-template name="perlin2D-loop">
-				<xsl:with-param name="xAmp" select="$xAmp * 2"/>
-				<xsl:with-param name="yAmp" select="$yAmp * 2"/>
-				<xsl:with-param name="amp" select="$amp div 2"/>
-				<xsl:with-param name="fin" select="$fin + ($noise * $amp)"/>
-				<xsl:with-param name="seed" select="$seed"/>
-				<xsl:with-param name="dv" select="$dv + 256 * $amp"/>
-				<xsl:with-param name="octaves" select="$octaves"/>
-				<xsl:with-param name="octaveIter" select="$octaveIter + 1"/>
-			</xsl:call-template>
-		</xsl:if>
-		...................
-		octaveIter = <xsl:value-of select="$octaveIter"/>
-		fin = <xsl:value-of select="$fin"/>
-		dv  = <xsl:value-of select="$dv"/>
-		**************
-		<xsl:value-of select="$fin div $dv"/>
+		<xsl:choose>
+			<xsl:when test="not($octaveIter = $octaves)">
+				<xsl:variable name="noise">
+					<xsl:call-template name="noise2D">
+							<xsl:with-param name="x" select="$xAmp"/>
+							<xsl:with-param name="y" select="$yAmp"/>
+							<xsl:with-param name="seed" select="$seed"/>
+						</xsl:call-template>
+				</xsl:variable>
+				<xsl:call-template name="perlin2D-loop">
+					<xsl:with-param name="xAmp" select="$xAmp * 2"/>
+					<xsl:with-param name="yAmp" select="$yAmp * 2"/>
+					<xsl:with-param name="amp" select="$amp div 2"/>
+					<xsl:with-param name="fin" select="$fin + ($noise * $amp)"/>
+					<xsl:with-param name="seed" select="$seed"/>
+					<xsl:with-param name="dv" select="$dv + 256 * $amp"/>
+					<xsl:with-param name="octaves" select="$octaves"/>
+					<xsl:with-param name="octaveIter" select="$octaveIter + 1"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$fin div $dv"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="perlin2D">
@@ -175,22 +155,6 @@
 			<xsl:with-param name="y" select="$high"/>
 			<xsl:with-param name="s" select="$yFrac"/>
 		</xsl:call-template>
-		<!-- Sanity check -->
-		<!--
-		===========================
-		x = <xsl:value-of select="$x"/>
-		y = <xsl:value-of select="$y"/>
-		seed = <xsl:value-of select="$seed"/>
-		xInt = <xsl:value-of select="$xInt"/>
-		yInt = <xsl:value-of select="$yInt"/>
-		xFrac = <xsl:value-of select="$xFrac"/>
-		yFrac = <xsl:value-of select="$yFrac"/>
-		s = <xsl:value-of select="$s"/>
-		t = <xsl:value-of select="$t"/>
-		u = <xsl:value-of select="$u"/>
-		v = <xsl:value-of select="$v"/>
-		===========================
-		-->
   </xsl:template>
 
 	<xsl:template name="slerp">

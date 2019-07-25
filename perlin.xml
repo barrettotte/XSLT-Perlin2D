@@ -2,8 +2,8 @@
 <?xml-stylesheet href="perlin.xslt" type="text/xsl"?>
 <perlin-noise>
   <settings>
-    <sizeX>64</sizeX>
-    <sizeY>64</sizeY>
+    <sizeX>16</sizeX>
+    <sizeY>16</sizeY>
     <seed>1234</seed>
     <frequency>6</frequency>
     <octaves>4</octaves>

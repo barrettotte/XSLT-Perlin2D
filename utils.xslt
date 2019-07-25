@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.1"
-	xmlns:date="http://exslt.org/dates-and-times"
-	xmlns:dyn="http://exslt.org/dynamic" 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
 	xmlns:exsl="http://exslt.org/common"
-	xmlns:func="http://exslt.org/functions"
 	xmlns:math="java.lang.Math"
-	xmlns:regexp="http://exslt.org/regular-expressions"
-	xmlns:set="http://exslt.org/sets"
-	xmlns:str="http://exslt.org/strings"
-	xmlns:xalan="http://xml.apache.org/xalan"
-	exclude-result-prefixes="xalan"
-	extension-element-prefixes="date dyn exsl func math regexp set str xalan"
+	extension-element-prefixes="exsl math"
 >
   <xsl:output method="xml" indent="yes"/>
   

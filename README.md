@@ -1,10 +1,19 @@
 # XSLT-Perlin2D
 
 
-A 2D perlin noise SVG generator using XSLT 1.1 and self loathing.
+A 2D perlin noise SVG generator using XSLT 2.0 and self loathing.
+
+
+I tried to stay as close to XSLT 1.0 as sanely as I could. This very well could still be built using XALAN processor.
 
 
 Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
+
+
+## Building
+* This was actually a huge pain to figure out which XSLT processor to use (xalan, saxon, xsltproc, etc)
+* I ended up doing something gross. I used Apache Ant and Saxon9.
+* To build with Saxon9 use ```build-saxon.xml```, to build with XALAN use ```build-xalan.groovy```
 
 
 ## Input XML
@@ -13,20 +22,17 @@ Ken Perlin's implementation http://mrl.nyu.edu/~perlin/noise/
 <?xml-stylesheet href="perlin.xslt" type="text/xsl"?>
 <perlin-noise>
   <settings>
-    <title>2D Perlin Noise</title>
-    <size x="64" y="64"/>      
+    <sizeX>16</sizeX>
+    <sizeY>16</sizeY>
+    <seed>1234</seed>
+    <frequency>6</frequency>
+    <octaves>4</octaves>
   </settings>
 </perlin-noise>
 ```
 
 
-## Run
-* This was actually a huge pain to figure out which XSLT processor to use (xalan, saxon, xsltproc, etc)
-* ```groovy build.groovy```
-
-
-
-## Output XML
+## Output SVG
 * xxx
 
 

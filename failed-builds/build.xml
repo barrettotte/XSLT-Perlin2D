@@ -1,8 +1,0 @@
-<project name="TranformXml" default="build">
-  <target name="xslt2">
-    <xslt in="perlin.xml" out="out.xml" style="perlin.xslt" force="true">
-      <classpath location="c:\\saxon\\saxon9he.jar" />
-    </xslt>
-  </target>   
-  <target name="build" depends="xslt2" />
-</project>
