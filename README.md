@@ -10,7 +10,7 @@ Its ugly, slow, and I'm sorry for bringing it into existence.
 ## Building
 * This was actually a huge pain to figure out which XSLT processor to use (xalan, saxon, xsltproc, etc)
 * I ended up doing something gross. I used Apache Ant and Saxon9.
-* To build with Saxon9 (XSLT 2.0) use ```build.xml``` **Recommended**
+* To build with Saxon9 (XSLT 2.0) use ```ant``` **Recommended**
 * Can also be built with XALAN (XSLT 1.0) use ```groovy build-xalan.groovy``` but its runs terribly at greater than 128x128 size
 
 
