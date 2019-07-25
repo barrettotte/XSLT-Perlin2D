@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-	xmlns:exsl="http://exslt.org/common"
-	xmlns:math="java.lang.Math"
-	extension-element-prefixes="exsl math"
->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" 
+	xmlns:exsl="http://exslt.org/common" 
+	xmlns:math="java.lang.Math" extension-element-prefixes="exsl math">
+
+	<xsl:output method="xml" indent="yes"/>
 	<xsl:import href="hash.xslt"/>
 	<xsl:import href="map.xslt"/>
 
@@ -15,36 +14,36 @@
 		<xsl:param name="octaves"/>
 		<xsl:param name="seed"/>
 		<xsl:element name="perlin-noise">
-      <xsl:attribute name="x">
-        <xsl:value-of select="$sizeX"/>
-      </xsl:attribute>
-      <xsl:attribute name="y">
-        <xsl:value-of select="$sizeY"/>
-      </xsl:attribute>
-      <xsl:variable name="map">
-        <xsl:call-template name="newMap">
-          <xsl:with-param name="sizeX" select="$sizeX"/>
-          <xsl:with-param name="sizeY" select="$sizeY"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:for-each select="exsl:node-set($map)/map/pixel">
-        <xsl:copy>
-          <xsl:attribute name="x">
-            <xsl:apply-templates select="@x"/>
-          </xsl:attribute>
-          <xsl:attribute name="y">
-            <xsl:apply-templates select="@y"/>
-          </xsl:attribute>
-          <xsl:call-template name="perlin2D">
-            <xsl:with-param name="x" select="@x"/>
-            <xsl:with-param name="y" select="@y"/>
-			<xsl:with-param name="freq" select="$freq"/>
-			<xsl:with-param name="octaves" select="$octaves"/>
-			<xsl:with-param name="seed" select="$seed"/>
-          </xsl:call-template>
-        </xsl:copy>
-      </xsl:for-each>
-    </xsl:element>
+			<xsl:attribute name="x">
+				<xsl:value-of select="$sizeX"/>
+			</xsl:attribute>
+			<xsl:attribute name="y">
+				<xsl:value-of select="$sizeY"/>
+			</xsl:attribute>
+			<xsl:variable name="map">
+				<xsl:call-template name="newMap">
+					<xsl:with-param name="sizeX" select="$sizeX"/>
+					<xsl:with-param name="sizeY" select="$sizeY"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<xsl:for-each select="exsl:node-set($map)/map/pixel">
+				<xsl:copy>
+					<xsl:attribute name="x">
+						<xsl:apply-templates select="@x"/>
+					</xsl:attribute>
+					<xsl:attribute name="y">
+						<xsl:apply-templates select="@y"/>
+					</xsl:attribute>
+					<xsl:call-template name="perlin2D">
+						<xsl:with-param name="x" select="@x"/>
+						<xsl:with-param name="y" select="@y"/>
+						<xsl:with-param name="freq" select="$freq"/>
+						<xsl:with-param name="octaves" select="$octaves"/>
+						<xsl:with-param name="seed" select="$seed"/>
+					</xsl:call-template>
+				</xsl:copy>
+			</xsl:for-each>
+		</xsl:element>
 	</xsl:template>
 
 	<xsl:template name="perlin2D-loop">
@@ -60,10 +59,10 @@
 			<xsl:when test="not($octaveIter = $octaves)">
 				<xsl:variable name="noise">
 					<xsl:call-template name="noise2D">
-							<xsl:with-param name="x" select="$xAmp"/>
-							<xsl:with-param name="y" select="$yAmp"/>
-							<xsl:with-param name="seed" select="$seed"/>
-						</xsl:call-template>
+						<xsl:with-param name="x" select="$xAmp"/>
+						<xsl:with-param name="y" select="$yAmp"/>
+						<xsl:with-param name="seed" select="$seed"/>
+					</xsl:call-template>
 				</xsl:variable>
 				<xsl:call-template name="perlin2D-loop">
 					<xsl:with-param name="xAmp" select="$xAmp * 2"/>
@@ -98,16 +97,16 @@
 			<xsl:with-param name="octaves" select="$octaves"/>
 			<xsl:with-param name="octaveIter" select="1"/>
 		</xsl:call-template>
-  </xsl:template>
+	</xsl:template>
 
-  <xsl:template name="noise2D">
-    <xsl:param name="x"/>
-    <xsl:param name="y"/>
-    <xsl:param name="seed"/>
-    <xsl:variable name="xInt" select="floor($x)"/>
-    <xsl:variable name="yInt" select="floor($y)"/>
-    <xsl:variable name="xFrac" select="$x - $xInt"/>
-    <xsl:variable name="yFrac" select="$y - $yInt"/>
+	<xsl:template name="noise2D">
+		<xsl:param name="x"/>
+		<xsl:param name="y"/>
+		<xsl:param name="seed"/>
+		<xsl:variable name="xInt" select="floor($x)"/>
+		<xsl:variable name="yInt" select="floor($y)"/>
+		<xsl:variable name="xFrac" select="$x - $xInt"/>
+		<xsl:variable name="yFrac" select="$y - $yInt"/>
 		<xsl:variable name="s">
 			<xsl:call-template name="noise2">
 				<xsl:with-param name="x" select="$xInt"/>
@@ -155,7 +154,7 @@
 			<xsl:with-param name="y" select="$high"/>
 			<xsl:with-param name="s" select="$yFrac"/>
 		</xsl:call-template>
-  </xsl:template>
+	</xsl:template>
 
 	<xsl:template name="slerp">
 		<xsl:param name="x"/>
@@ -212,12 +211,12 @@
 		<xsl:value-of select="floor($xHash)"/>
 	</xsl:template>
 
-  <xsl:template match="//noise-map/pixel/@x">
-    <xsl:attribute name="x" select="."/>
-  </xsl:template>
+	<xsl:template match="//noise-map/pixel/@x">
+		<xsl:attribute name="x" select="."/>
+	</xsl:template>
 
-  <xsl:template match="//noise-map/pixel/@y">
-    <xsl:attribute name="y" select="."/>
-  </xsl:template>
+	<xsl:template match="//noise-map/pixel/@y">
+		<xsl:attribute name="y" select="."/>
+	</xsl:template>
 
 </xsl:stylesheet>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-	xmlns:exsl="http://exslt.org/common"
-	xmlns:math="java.lang.Math"
-	extension-element-prefixes="exsl math"
->
-  <xsl:output method="xml" indent="yes"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" 
+  xmlns:exsl="http://exslt.org/common" xmlns:math="java.lang.Math" 
+  extension-element-prefixes="exsl math">
   
+  <xsl:output method="xml" indent="yes"/>
+
   <xsl:template name="bitwiseAnd">
     <xsl:param name="left"/>
     <xsl:param name="right"/>
@@ -44,6 +43,18 @@
         <xsl:value-of select="$param"/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="lte">
+    <xsl:with-param name="left"/>
+    <xsl:with-param name="right"/>
+    <xsl:value-of select="($left &lt; $right) or ($left = $right)"/>
+  </xsl:template>
+
+  <xsl:template name="gte">
+    <xsl:with-param name="left"/>
+    <xsl:with-param name="right"/>
+    <xsl:value-of select="($left &gt; $right) or ($left = $right)"/>
   </xsl:template>
 
   <xsl:template name="boundedRand">

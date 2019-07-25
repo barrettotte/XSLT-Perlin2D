@@ -3,10 +3,10 @@ import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
 import javax.xml.transform.OutputKeys
 
-def xml = new File("perlin.xml").getText()
-def xslt= new File("perlin.xslt").getText()
+def xml = new File("perlin-svg.xml").getText()
+def xslt= new File("perlin-svg.xslt").getText()
 def transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(new StringReader(xslt)))
-def out = new FileOutputStream("output.xml")
+def out = new FileOutputStream("perlin.svg")
 
 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");

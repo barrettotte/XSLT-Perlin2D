@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-	xmlns:exsl="http://exslt.org/common"
-	xmlns:math="java.lang.Math"
-	extension-element-prefixes="exsl math"
->
-	<xsl:output method="xml" indent="yes"/>
-	
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" 
+  xmlns:exsl="http://exslt.org/common" 
+  xmlns:math="java.lang.Math" extension-element-prefixes="exsl math">
+  
+  <xsl:output method="xml" indent="yes"/>
+
   <xsl:template name="newMap">
     <xsl:param name="sizeX" select="8"/>
     <xsl:param name="sizeY" select="8"/>

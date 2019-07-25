@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="perlin.xslt" type="text/xsl"?>
+<perlin-noise>
+  <settings>
+    <sizeX>256</sizeX>
+    <sizeY>256</sizeY>
+    <seed>1234</seed>
+    <frequency>2</frequency>
+    <octaves>2</octaves>
+  </settings>
+</perlin-noise>
